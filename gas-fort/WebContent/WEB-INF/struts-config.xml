@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="BuscaForm" type="br.com.academus.gasfort.form.BuscaForm" />
+		<form-bean name="ClienteForm" type="br.com.academus.gasfort.form.ClienteForm" />
+		<form-bean name="ControleAcessoForm" type="br.com.academus.gasfort.form.ControleAcessoForm" />
+		<form-bean name="CompraForm" type="br.com.academus.gasfort.form.CompraForm" />
+		<form-bean name="EmpresaForm" type="br.com.academus.gasfort.form.EmpresaForm" />
+		<form-bean name="EnderecoForm" type="br.com.academus.gasfort.form.EnderecoForm" />
+		<form-bean name="FormaPagamentoForm" type="br.com.academus.gasfort.form.FormaPagamentoForm" />
+		<form-bean name="FornecedorForm" type="br.com.academus.gasfort.form.FornecedorForm" />
+		<form-bean name="LoginForm" type="br.com.academus.gasfort.form.LoginForm" />
+		<form-bean name="ProdutoForm" type="br.com.academus.gasfort.form.ProdutoForm" />
+		<form-bean name="VendaForm" type="br.com.academus.gasfort.form.VendaForm" />
+		<form-bean name="UsuarioForm" type="br.com.academus.gasfort.form.UsuarioForm" />
+	</form-beans>
+
+	<action-mappings>
+
+		<!-- LOGIN -->
+
+		<action path="/login" name="LoginForm" input="/index.jsp"
+			scope="request" type="br.com.academus.gasfort.action.LoginAction">
+			<forward name="ok" path="/menu-principal.jsp" />
+		</action>
+
+		<action path="/logout" input="/index.jsp" scope="request"
+			type="br.com.academus.gasfort.action.LogoutAction">
+			<forward name="ok" path="/index.jsp" />
+		</action>
+
+		<!--CLIENTE -->
+
+		<action path="/abreBuscaCliente" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaClienteAction">
+			<forward name="ok" path="/lista-clientes.jsp" />
+		</action>
+
+		<action path="/buscaCliente" name="BuscaForm" input="/lista-clientes.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaClienteAction">
+			<forward name="ok" path="/lista-clientes.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/abreAdicionaCliente" scope="request"
+			type="br.com.academus.gasfort.action.AbreAdicionaClienteAction">
+			<forward name="ok" path="/cadastro-cliente.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/adicionaCliente" name="ClienteForm" input="/cadastro-cliente.jsp"
+			scope="request" type="br.com.academus.gasfort.action.AdicionaClienteAction">
+			<forward name="ok" path="/abreAdicionaEndereco.do" />
+		</action>
+
+		<action path="/abreAdicionaEndereco" scope="request"
+			type="br.com.academus.gasfort.action.AbreAdicionaEnderecoAction">
+			<forward name="ok" path="/adiciona-endereco.jsp" />
+		</action>
+
+		<action path="/abreEditaCliente" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaClienteAction">
+			<forward name="ok" path="/edita-cliente.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/editaCliente" name="ClienteForm" input="/edita-cliente.jsp"
+			scope="request" type="br.com.academus.gasfort.action.EditaClienteAction">
+			<forward name="ok" path="/abreBuscaCliente.do" />
+		</action>
+
+		<action path="/deletarCliente" scope="request"
+			type="br.com.academus.gasfort.action.DeletarClienteAction">
+			<forward name="ok" path="/abreBuscaCliente.do" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<!-- FORMA DE PAGAMENTO -->
+
+		<action path="/abreBuscaFormaPagamento" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaFormaPagamentoAction">
+			<forward name="ok" path="/lista-formasPagamento.jsp" />
+		</action>
+
+		<action path="/buscaFormaPagamento" name="BuscaForm"
+			input="/lista-formasPagamento.jsp" scope="request"
+			type="br.com.academus.gasfort.action.BuscaFormaPagamentoAction">
+			<forward name="ok" path="/lista-formasPagamento.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/abreAdicionaFormaPagamento" scope="request"
+			type="br.com.academus.gasfort.action.AbreAdicionaFormaPagamentoAction">
+			<forward name="ok" path="/cadastro-formaPagamento.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/adicionaFormaPagamento" name="FormaPagamentoForm"
+			input="/cadastro-formaPagamento.jsp" scope="request"
+			type="br.com.academus.gasfort.action.AdicionaFormaPagamentoAction">
+			<forward name="ok" path="/abreBuscaFormaPagamento.do" />
+		</action>
+
+		<action path="/abreEditaFormaPagamento" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaFormaPagamentoAction">
+			<forward name="ok" path="/edita-formaPagamento.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/editaFormaPagamento" name="FormaPagamentoForm"
+			input="/edita-cliente.jsp" scope="request"
+			type="br.com.academus.gasfort.action.EditaFormaPagamentoAction">
+			<forward name="ok" path="/abreBuscaFormaPagamento.do" />
+		</action>
+
+		<action path="/deletarFormaPagamento" scope="request"
+			type="br.com.academus.gasfort.action.DeletarFormaPagamentoAction">
+			<forward name="ok" path="/abreBuscaFormaPagamento.do" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<!-- FORNECEDOR -->
+
+		<action path="/abreBuscaFornecedor" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaFornecedorAction">
+			<forward name="ok" path="/lista-fornecedores.jsp" />
+		</action>
+
+		<action path="/buscaFornecedor" name="BuscaForm" input="/lista-fornecedores.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaFornecedorAction">
+			<forward name="ok" path="/lista-fornecedores.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/abreAdicionaFornecedor" scope="request"
+			type="br.com.academus.gasfort.action.AbreAdicionaFornecedorAction">
+			<forward name="ok" path="/cadastro-fornecedor.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/adicionaFornecedor" name="FornecedorForm"
+			input="/cadastro-fornecedor.jsp" scope="request"
+			type="br.com.academus.gasfort.action.AdicionaFornecedorAction">
+			<forward name="ok" path="/abreBuscaFornecedor.do" />
+		</action>
+
+		<action path="/abreEditaFornecedor" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaFornecedorAction">
+			<forward name="ok" path="/edita-fornecedor.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/editaFornecedor" name="FornecedorForm" input="/edita-fornecedor.jsp"
+			scope="request" type="br.com.academus.gasfort.action.EditaFornecedorAction">
+			<forward name="ok" path="/abreBuscaFornecedor.do" />
+		</action>
+
+		<action path="/deletarFornecedor" scope="request"
+			type="br.com.academus.gasfort.action.DeletarFornecedorAction">
+			<forward name="ok" path="/abreBuscaFornecedor.do" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+
+		<!-- PRODUTO -->
+
+		<action path="/abreBuscaProduto" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaProdutoAction">
+			<forward name="ok" path="/lista-produtos.jsp" />
+		</action>
+
+		<action path="/buscaProduto" name="BuscaForm" input="/lista-produtos.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaProdutoAction">
+			<forward name="ok" path="/lista-produtos.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/abreAdicionaProduto" scope="request"
+			type="br.com.academus.gasfort.action.AbreAdicionaProdutoAction">
+			<forward name="ok" path="/cadastro-produto.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/adicionaProduto" name="ProdutoForm" input="/cadastro-produto.jsp"
+			scope="request" type="br.com.academus.gasfort.action.AdicionaProdutoAction">
+			<forward name="ok" path="/abreBuscaProduto.do" />
+		</action>
+
+		<action path="/abreEditaProduto" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaProdutoAction">
+			<forward name="ok" path="/edita-produto.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/editaProduto" name="ProdutoForm" input="/edita-produto.jsp"
+			scope="request" type="br.com.academus.gasfort.action.EditaProdutoAction">
+			<forward name="ok" path="/abreBuscaProduto.do" />
+		</action>
+
+		<action path="/deletarProduto" scope="request"
+			type="br.com.academus.gasfort.action.DeletarProdutoAction">
+			<forward name="ok" path="/abreBuscaProduto.do" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<!-- EMPRESA -->
+
+		<action path="/abreCadastroEmpresa" scope="request"
+			type="br.com.academus.gasfort.action.AbreCadastroEmpresaAction">
+			<forward name="ok" path="/cadastro-empresa.jsp" />
+
+		</action>
+
+		<action path="/abreEditaEmpresa" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaEmpresaAction">
+			<forward name="ok" path="/edita-empresa.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/editaEmpresa" name="EmpresaForm" input="/edita-empresa.jsp"
+			scope="request" type="br.com.academus.gasfort.action.EditaEmpresaAction">
+			<forward name="ok" path="/abreCadastroEmpresa.do" />
+		</action>
+
+		<!-- ENDEREÇO -->
+
+		<action path="/adicionaEndereco" name="EnderecoForm" input="/adiciona-endereco.jsp"
+			scope="request" type="br.com.academus.gasfort.action.AdicionaEnderecoAction">
+			<forward name="ok" path="/abreBuscaCliente.do" />
+		</action>
+
+		<action path="/abreEditaEndereco" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaEnderecoAction">
+			<forward name="ok" path="/edita-cliente.jsp" />
+		</action>
+
+		<action path="/editaEndereco" name="EnderecoForm" input="/edita-cliente.jsp"
+			scope="request" type="br.com.academus.gasfort.action.EditaEnderecoAction">
+			<forward name="ok" path="/abreBuscaCliente.do" />
+		</action>
+
+		<action path="/deletarEndereco" scope="request"
+			type="br.com.academus.gasfort.action.DeletarEnderecoAction">
+			<forward name="ok" path="/abreBuscaCliente.do" />
+		</action>
+
+		<!-- USUÁRIO -->
+
+		<action path="/abreBuscaUsuario" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaUsuarioAction">
+			<forward name="ok" path="/lista-usuarios.jsp" />
+		</action>
+
+		<action path="/buscaUsuario" name="BuscaForm" input="/lista-usuarios.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaUsuarioAction">
+			<forward name="ok" path="/lista-usuarios.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/abreAdicionaUsuario" scope="request"
+			type="br.com.academus.gasfort.action.AbreAdicionaUsuarioAction">
+			<forward name="ok" path="/cadastro-usuario.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/adicionaUsuario" name="UsuarioForm" input="/cadastro-usuario.jsp"
+			scope="request" type="br.com.academus.gasfort.action.AdicionaUsuarioAction">
+			<forward name="ok" path="/abreBuscaUsuario.do" />
+		</action>
+
+		<action path="/abreEditaUsuario" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaUsuarioAction">
+			<forward name="ok" path="/edita-usuario.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/editaUsuario" name="UsuarioForm" input="/edita-usuario.jsp"
+			scope="request" type="br.com.academus.gasfort.action.EditaUsuarioAction">
+			<forward name="ok" path="/abreBuscaUsuario.do" />
+		</action>
+
+		<action path="/deletarUsuario" scope="request"
+			type="br.com.academus.gasfort.action.DeletarUsuarioAction">
+			<forward name="ok" path="/abreBuscaUsuario.do" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/abreControleAcesso" scope="session" name="ControleAcessoForm"
+			type="br.com.academus.gasfort.action.AbreControleAcessoAction">
+			<forward name="ok" path="/controle-acesso.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+
+		<action path="/controleAcesso" name="ControleAcessoForm" input="/controle-acesso.jsp"
+			scope="session" type="br.com.academus.gasfort.action.ControleAcessoAction">
+			<forward name="ok" path="/abreBuscaUsuario.do" />
+		</action>
+
+		<action path="/editaControleAcesso" name="ControleAcessoForm"
+			input="/edita-controleAcesso.jsp" scope="request"
+			type="br.com.academus.gasfort.action.EditaControleAcessoAction">
+			<forward name="ok" path="/abreBuscaUsuarios.do" />
+		</action>
+
+
+		<!-- PEDIDO -->
+
+		<action path="/abreBuscaVenda" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaVendaAction">
+			<forward name="ok" path="/lista-vendas.jsp" />
+		</action>
+
+		<action path="/buscaVenda" name="BuscaForm" input="/lista-vendas.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaVendaAction">
+			<forward name="ok" path="/lista-vendas.jsp" />
+		</action>
+
+		<action path="/abreCadastroVenda" scope="request"
+			type="br.com.academus.gasfort.action.AbreCadastroVendaAction">
+			<forward name="ok" path="/cadastro-venda.jsp" />
+		</action>
+
+		<action path="/cadastroVenda" name="VendaForm" input="/cadastro-venda.jsp"
+			scope="request" type="br.com.academus.gasfort.action.CadastroVendaAction">
+			<forward name="ok" path="/abreBuscaVenda.do" />
+		</action>
+
+		<action path="/deletarVenda" scope="request"
+			type="br.com.academus.gasfort.action.DeletarVendaAction">
+			<forward name="ok" path="/abreBuscaVenda.do" />
+		</action>
+
+		<action path="/buscaProdutoVenda" name="VendaForm"
+			scope="request" type="br.com.academus.gasfort.action.BuscaProdutoVendaAction">
+		</action>
+
+		<action path="/deletarProdutoVenda"
+			scope="request" type="br.com.academus.gasfort.action.DeletarProdutoVendaAction">
+		</action>
+		
+		<action path="/deletarProdVenda" input="/edita-pedido.jsp"
+			scope="request" type="br.com.academus.gasfort.action.DeletarProdVendaAction">
+			<forward name="ok" path="/edita-pedido.jsp" />
+		</action>
+
+		<action path="/abreEditaVenda" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaVendaAction">
+			<forward name="ok" path="/edita-venda.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+		
+		<action path="/editaVenda" name="VendaForm"
+			input="/edita-pedido.jsp" scope="request"
+			type="br.com.academus.gasfort.action.EditaVendaAction">
+			<forward name="ok" path="/abreBuscaVenda.do" />
+		</action>
+
+		<!-- COMPRA -->
+
+		<action path="/abreBuscaCompra" scope="request"
+			type="br.com.academus.gasfort.action.AbreBuscaCompraAction">
+			<forward name="ok" path="/lista-compras.jsp" />
+		</action>
+
+		<action path="/buscaCompra" name="BuscaForm" input="/lista-compras.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaCompraAction">
+			<forward name="ok" path="/lista-compras.jsp" />
+		</action>
+
+		<action path="/abreCadastroCompra" scope="request"
+			type="br.com.academus.gasfort.action.AbreCadastroCompraAction">
+			<forward name="ok" path="/cadastro-compra.jsp" />
+		</action>
+
+		<action path="/cadastroCompra" name="CompraForm" input="/cadastro-compra.jsp"
+			scope="request" type="br.com.academus.gasfort.action.CadastroCompraAction">
+			<forward name="ok" path="/abreBuscaCompra.do" />
+		</action>
+
+		<action path="/deletarCompra" scope="request"
+			type="br.com.academus.gasfort.action.DeletarCompraAction">
+			<forward name="ok" path="/abreBuscaCompra.do" />
+		</action>
+
+		<action path="/buscaProdutoCompra" name="CompraForm" 
+			scope="request" type="br.com.academus.gasfort.action.BuscaProdutoCompraAction">
+		</action>
+
+		<action path="/deletarProdutoCompra" 
+			scope="request" type="br.com.academus.gasfort.action.DeletarProdutoCompraAction">
+			<forward name="ok" path="/cadastro-compra.jsp" />
+		</action>
+		
+		<action path="/abreEditaCompra" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaCompraAction">
+			<forward name="ok" path="/edita-compra.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+		
+		<action path="/editaCompra" name="CompraForm"
+			input="/edita-compra.jsp" scope="request"
+			type="br.com.academus.gasfort.action.EditaCompraAction">
+			<forward name="ok" path="/abreBuscaCompra.do" />
+		</action>
+		
+		<action path="/editaProdutoCompra" name="CompraForm" scope="request"
+			type="br.com.academus.gasfort.action.EditaProdutoCompraAction">
+		</action>
+
+		<!-- AUDITORIA -->
+
+		<action path="/abreAuditoria" scope="request"
+			type="br.com.academus.gasfort.action.AbreAuditoriaAction">
+			<forward name="ok" path="/lista-auditoria.jsp" />
+		</action>
+
+		<action path="/buscaAuditoria" name="BuscaForm" input="/lista-auditoria.jsp"
+			scope="request" type="br.com.academus.gasfort.action.BuscaAuditoriaAction">
+			<forward name="ok" path="/lista-auditoria.jsp" />
+		</action>
+
+
+		<!-- ESTOQUE -->
+
+		<action path="/abreEstoque" scope="request"
+			type="br.com.academus.gasfort.action.AbreEstoqueAction">
+			<forward name="ok" path="/lista-estoque.jsp" />
+		</action>
+		
+		<!-- RELATÓRIO PRODUTOS -->
+		
+		<action path="/abreRelatorioProduto" scope="request"
+			type="br.com.academus.gasfort.action.AbreRelatorioProdutoAction">
+			<forward name="ok" path="/relatorio-produtos.jsp" />
+		</action>
+		
+		<action path="/relatorioProduto" name="BuscaForm" input="/relatorio-produtos.jsp"
+			scope="request" type="br.com.academus.gasfort.action.RelatorioProdutoAction">
+			<forward name="ok" path="/relatorio-produtos.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+		
+		<!-- RELATÓRIO CLIENTES -->
+		
+		<action path="/abreRelatorioCliente" scope="request"
+			type="br.com.academus.gasfort.action.AbreRelatorioClienteAction">
+			<forward name="ok" path="/relatorio-clientes.jsp" />
+		</action>
+		
+		<action path="/relatorioCliente" name="BuscaForm" input="/relatorio-clientes.jsp"
+			scope="request" type="br.com.academus.gasfort.action.RelatorioClienteAction">
+			<forward name="ok" path="/relatorio-clientes.jsp" />
+			<forward name="negado" path="/acesso-negado.jsp" />
+		</action>
+		
+		<!-- AJAX -->
+
+		<action path="/carregaCliente" scope="request"
+			type="br.com.academus.gasfort.action.CarregaClienteAction"></action>
+
+		<action path="/carregaFornecedor" scope="request"
+			type="br.com.academus.gasfort.action.CarregaFornecedorAction"></action>
+
+		<action path="/carregaProduto" scope="request"
+			type="br.com.academus.gasfort.action.CarregaProdutoAction"></action>
+
+		<action path="/carregaFormaPagamento" scope="request"
+			type="br.com.academus.gasfort.action.CarregaFormaPagamentoAction"></action>
+			
+				<action path="/abreEditaProdutoCompra" scope="request"
+			type="br.com.academus.gasfort.action.AbreEditaProdutoCompraAction"></action>
+
+	</action-mappings>
+
+	<!-- Arquivo de Mensagens -->
+
+	<message-resources parameter="MessageResources"></message-resources>
+
+</struts-config>
